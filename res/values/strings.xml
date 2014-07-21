@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PiHome Client</string>
+    <string name="greeting">Congratulations! You have just created an Android Application with Codenvy</string>
+    <string name="enter_host">Please enter PiServ adress:</string>
+    <string name="switch_1">Switch1</string>
+</resources>
