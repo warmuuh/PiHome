@@ -33,8 +33,12 @@ public class Greeting extends Activity
       String host = input.getText().toString();
       
       Toast.makeText(this, "Switching button1", Toast.LENGTH_LONG).show();
-      String result = getRestTemplate().postForObject(host + url, new SwitchRequest(0), String.class);
-      Toast.makeText(this, "Switched button1: " + result, Toast.LENGTH_LONG).show();
+      try{
+        String result = getRestTemplate().postForObject(host + url, new SwitchRequest(0), String.class);
+        Toast.makeText(this, "Switched button1: " + result, Toast.LENGTH_LONG).show();
+      } catch(Exception e){
+        Toast.makeText(this, "Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+      }
       
     }
 }
