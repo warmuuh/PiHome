@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">piGome</string>
+    <string name="app_name">piHome</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="switch1">Switch1</string>
     <string name="switch2">Switch2</string>
     <string name="switch3">Switch3</string>
     <string name="switch4">Switch4</string>
-
+    <string name="plugin_name">piHome</string>
+    <string name="message_hint">Enter switch</string>
+    
 </resources>
