@@ -12,12 +12,17 @@
 
 package wrm.pihome.tasker.ui;
 
+import javax.inject.Inject;
+
+import roboguice.event.EventManager;
+import roboguice.inject.InjectView;
 import wrm.pihome.tasker.bundle.BundleScrubber;
 import wrm.pihome.tasker.bundle.PluginBundleManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.twofortyfouram.locale.api.R;
 
@@ -37,8 +42,12 @@ import com.twofortyfouram.locale.api.R;
  * @see com.twofortyfouram.locale.Intent#EXTRA_BUNDLE
  */
 public final class EditActivity extends AbstractPluginActivity
-{
-
+{ 
+	@InjectView(wrm.pihome.R.id.spinner1)
+	Spinner spinner1;
+	
+	
+	
     @Override
     protected void onCreate(final Bundle savedInstanceState)
     {
@@ -67,7 +76,7 @@ public final class EditActivity extends AbstractPluginActivity
     {
         if (!isCanceled())
         {
-            final String message = ((EditText) findViewById(android.R.id.text1)).getText().toString();
+            final String message = spinner1.getSelectedItem().toString();
 
             if (message.length() > 0)
             {
@@ -107,12 +116,12 @@ public final class EditActivity extends AbstractPluginActivity
     {
         final int maxBlurbLength =
                 context.getResources().getInteger(R.integer.twofortyfouram_locale_maximum_blurb_length);
-
-        if (message.length() > maxBlurbLength)
+        String blurb = "Switch " + message;
+        if (blurb.length() > maxBlurbLength)
         {
-            return message.substring(0, maxBlurbLength);
+            return blurb.substring(0, maxBlurbLength);
         }
 
-        return message;
+        return blurb;
     }
 }

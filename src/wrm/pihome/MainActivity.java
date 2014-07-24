@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.event.Observes;
 import roboguice.inject.ContentView;
+import wrm.pihome.events.ReloadPreferencesEvent;
 import wrm.pihome.events.SwitchButtonEvent;
 import wrm.pihome.promise.Deferred.Callback;
 import android.content.Intent;
@@ -19,32 +20,19 @@ public class MainActivity extends RoboFragmentActivity {
 
 	private static final int RESULT_SETTINGS = 123;
 	
-	@Inject
-	PiServeApi api;
+
 	
 	@Inject
-	SharedPreferences prefs;
+	SwitchService switchService;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		loadPreferences();
+		
 	}
 	
-	public void onSwitchButtonEvent(@Observes final SwitchButtonEvent event) {
-		// @formatter:off
-		api.switchPlug(event)
-		.then(new Callback<Integer>() { public void call(Integer value) {
-			String message = "Switch turned " + (event.isSwitchOn() ? "on" : "off") + ".";
-			Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();	
-		}})
-		.otherwise(new Callback<Exception>() { public void call(Exception exception) {
-			String message = "Failed to switch plug: " + exception.toString();
-			Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();	
-		}});
-		// @formatter:on
-	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,16 +61,11 @@ public class MainActivity extends RoboFragmentActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case RESULT_SETTINGS:
-			loadPreferences();
+			eventManager.fire(new ReloadPreferencesEvent());
 		}
 
 	}
 
-	private void loadPreferences() {
-		String host = prefs.getString("prefHost", "");
-		String user = prefs.getString("prefUser", "");
-		String password = prefs.getString("prefPassword", "");
-		api.setConfiguration(host, user, password);
-	}
+	
 
 }

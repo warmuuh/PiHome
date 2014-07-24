@@ -14,6 +14,13 @@ package wrm.pihome.tasker.receiver;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
+import roboguice.event.EventManager;
+import roboguice.receiver.RoboBroadcastReceiver;
+
+import wrm.pihome.SwitchService;
+import wrm.pihome.events.SwitchButtonEvent;
 import wrm.pihome.tasker.bundle.BundleScrubber;
 import wrm.pihome.tasker.bundle.PluginBundleManager;
 import wrm.pihome.tasker.ui.EditActivity;
@@ -30,9 +37,15 @@ import android.widget.Toast;
  * @see com.twofortyfouram.locale.Intent#ACTION_FIRE_SETTING
  * @see com.twofortyfouram.locale.Intent#EXTRA_BUNDLE
  */
-public final class FireReceiver extends BroadcastReceiver
+public final class FireReceiver extends RoboBroadcastReceiver
 {
 
+	@Inject
+	EventManager events;
+	
+	@Inject
+	SwitchService switchService;
+	
     /**
      * @param context {@inheritDoc}.
      * @param intent the incoming {@link com.twofortyfouram.locale.Intent#ACTION_FIRE_SETTING} Intent. This
@@ -40,7 +53,7 @@ public final class FireReceiver extends BroadcastReceiver
      *            {@link EditActivity} and later broadcast by Locale.
      */
     @Override
-    public void onReceive(final Context context, final Intent intent)
+    public void handleReceive(final Context context, final Intent intent)
     {
         /*
          * Always be strict on input parameters! A malicious third-party app could send a malformed Intent.
@@ -61,7 +74,9 @@ public final class FireReceiver extends BroadcastReceiver
         if (PluginBundleManager.isBundleValid(bundle))
         {
             final String message = bundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_MESSAGE);
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            int switchId = Integer.parseInt(message) - 1;
+            events.fire(new SwitchButtonEvent(switchId, true));
+            
         }
     }
 }

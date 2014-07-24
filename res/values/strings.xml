@@ -11,4 +11,11 @@
     <string name="plugin_name">piHome</string>
     <string name="message_hint">Enter switch</string>
     
+     <string-array name="switch_arrays">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+     <string name="switch_prompt">Which switch?</string>
 </resources>

@@ -8,6 +8,9 @@
 package wrm.pihome;
 
 public final class R {
+    public static final class array {
+        public static final int switch_arrays=0x7f0a0000;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -25,13 +28,14 @@ public final class R {
         public static final int twofortyfouram_locale_ic_menu_save=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f050009;
+        public static final int action_settings=0x7f05000a;
         public static final int cb_switch1=0x7f050005;
         public static final int cb_switch2=0x7f050006;
         public static final int cb_switch3=0x7f050007;
         public static final int cb_switch4=0x7f050008;
         public static final int container=0x7f050003;
         public static final int fragment1=0x7f050004;
+        public static final int spinner1=0x7f050009;
         /**  Menu item to cancel the current Activity 
          */
         public static final int twofortyfouram_locale_menu_dontsave=0x7f050001;
@@ -53,8 +57,8 @@ public final class R {
         public static final int tasker_edit=0x7f030002;
     }
     public static final class menu {
-        public static final int main=0x7f0a0000;
-        public static final int twofortyfouram_locale_help_save_dontsave=0x7f0a0001;
+        public static final int main=0x7f0b0000;
+        public static final int twofortyfouram_locale_help_save_dontsave=0x7f0b0001;
     }
     public static final class string {
         public static final int action_settings=0x7f070007;
@@ -66,6 +70,7 @@ public final class R {
         public static final int switch2=0x7f070009;
         public static final int switch3=0x7f07000a;
         public static final int switch4=0x7f07000b;
+        public static final int switch_prompt=0x7f07000e;
         /**  A format string for breadcrumbs in the titlebar.  For left to right languages, such as English, the format will look something like "Main Activity > Sub Activity > Sub Activity 2".  Item #1 is the previous path, item #2 is the separator, and item #3 is the current item.  For most left to right languages, this shouldn't need to be changed. 
          */
         public static final int twofortyfouram_locale_breadcrumb_format=0x7f070000;

@@ -12,6 +12,7 @@
 
 package wrm.pihome.tasker.ui;
 
+import roboguice.activity.RoboActivity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -29,7 +30,7 @@ import com.twofortyfouram.locale.api.R;
  * Superclass for plug-in Activities. This class takes care of initializing
  * aspects of the plug-in's UI to look more integrated with the plug-in host.
  */
-public abstract class AbstractPluginActivity extends Activity {
+public abstract class AbstractPluginActivity extends RoboActivity {
 	/**
 	 * Flag boolean that can only be set to true via the "Don't Save"
 	 * {@link com.twofortyfouram.locale.platform.R.id#twofortyfouram_locale_menu_dontsave}
